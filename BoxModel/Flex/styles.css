@@ -1,0 +1,26 @@
+.flex {
+    display: flex;
+    background-color: azure;
+    /* flex-direction: row-reverse;
+    flex-wrap: wrap; */
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    /* align-items: flex-end; */
+}
+
+
+.flex > div {
+    margin: 10px;
+    padding: 10px;
+    background-color: bisque;
+}
+
+.linear-gradient {
+    height: 100px;
+    background: linear-gradient(to left, #00ff59 25%, #c492c4 50%, #0000ff 100%);
+}
+
+.radial-gradient {
+    height: 100px;
+    background: radial-gradient(ellipse, #00ff59 25%, #c492c4 50%, #0000ff 100%);
+}

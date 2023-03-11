@@ -1,0 +1,55 @@
+/* Mobile Styles */
+body {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color:darkgray;
+    color: #fff;
+    padding: 1rem;
+}
+
+h1 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+nav {
+    display: none;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    margin-bottom: 1rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+}
+
+main, footer {
+    padding: 1rem;
+}
+
+section {
+    margin-bottom: 1rem;
+}
+
+@media (orientation: landscape) {
+    /* styles for landscape mode */
+
+}
+
+@media (orientation: portrait) {
+    /* styles for portrait mode */
+    
+}

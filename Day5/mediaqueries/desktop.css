@@ -1,0 +1,35 @@
+body {
+    font-size: 1.2rem;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+nav {
+    display: block;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+section {
+    flex-basis: calc(50% - 1rem);
+    margin-right: 1rem;
+    margin-bottom: 0;
+}
+
+footer {
+    background-color: darkgrey;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}

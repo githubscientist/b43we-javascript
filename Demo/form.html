@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Forms</title>
+    </head>
+
+    <body>
+        <header>
+
+        </header>
+
+        <section>
+            <form method="get" action="/form.html">
+                <input id= "username" type="text" name="username" placeholder="username">
+                <input type="text" name="password" placeholder="password">
+
+                <input type="submit">
+            </form>
+        </section>
+
+        <section>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="border: solid 1px">S.NO</td>
+                        <th style="border: solid 1px">Name</td>
+                        <th style="border: solid 1px">Number</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Sathish</td>
+                        <td>954313</td>
+                    </tr>
+                </tbody>
+
+                
+            </table>
+        </section>
+
+        <script>
+
+            let urlparams = new URLSearchParams(window.location.search);
+            console.log(urlparams.get('username'), urlparams.get('password'));
+
+            document.getElementById('username').value = urlparams.get('username');
+
+        </script>
+
+        <footer>
+
+        </footer>
+    </body>
+
+</html>

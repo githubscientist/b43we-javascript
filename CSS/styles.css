@@ -1,0 +1,50 @@
+/* External Style */
+#about-earth {
+    font-size: 18px;
+    color: yellowgreen;
+}
+
+body {
+    padding: 20px;
+}
+
+.box {
+    background-color: #f0f0f0;
+    border: 1px solid black;
+    padding: 15px;
+}
+
+/* ID Selectors > Class Selectors > Element Selectors */
+
+/* Descendant Selectors */
+div ol li {
+    color: red;
+}
+
+/* Child Selectors */
+
+div > ol > ul > li {
+    background-color: aqua;
+    color: black;
+}
+
+/* Attribute Selector */
+/* div a {
+    color: aqua;
+} */
+
+a[href="https://www.google.com"] {
+    color: blueviolet;
+}
+
+/* Important */
+.para {
+    font-size: 14px;
+    color: green !important;
+}
+
+.para {
+    color: blueviolet;
+}
+
+
