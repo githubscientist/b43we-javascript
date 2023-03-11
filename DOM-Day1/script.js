@@ -91,11 +91,13 @@ let exampleDiv = document.getElementById('exampleDiv');
 
 // exampleDiv.innerHTML = '<p>A New Paragraph!</p>';
 
-let paragraph1 = document.createElement('p');
-paragraph1.textContent = 'paragraph 1';
+// let paragraph1 = document.createElement('p');
+// paragraph1.textContent = 'paragraph 1';
 
-let paragraph2 = document.createElement('p');
-paragraph2.textContent = 'paragraph 2';
-paragraph2.setAttribute('id', 'boxID');
+// let paragraph2 = document.createElement('p');
+// paragraph2.textContent = 'paragraph 2';
+// paragraph2.setAttribute('id', 'boxID');
 
-exampleDiv.append(paragraph1, paragraph2);
+// exampleDiv.append(paragraph1, paragraph2);
+
+console.log(exampleDiv.textContent);
