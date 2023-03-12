@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Next Page</title>
+    </head>
+
+    <body>
+
+
+
+        <script>
+            let button = document.createElement('button');
+
+            button.textContent = 'Previous Page';
+
+            button.addEventListener('click', () => {
+                window.location.assign('http://127.0.0.1:3000/DOM-Day2/index.html')
+            });
+
+            document.querySelector('body').appendChild(button);
+
+        </script>
+    </body>
+</html>
