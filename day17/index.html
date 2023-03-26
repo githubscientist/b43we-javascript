@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Promise States</title>
+    </head>
+
+    <body>
+        <script>
+            let promise = new Promise((resolve, reject) => {
+                // randomly generate a number between 1 and 10
+                // let randomNumber = Math.random() * 10;
+
+                // if (randomNumber > 5) {
+                //     resolve('success');
+                // } else {
+                //     reject('error');
+                // }
+
+                setTimeout(() => {
+                    resolve('success');
+                }, 3000);
+            });
+
+            console.log(promise);
+            setTimeout(() => {
+                console.log(promise);
+            }, 4000);
+        </script>
+    </body>
+</html>
