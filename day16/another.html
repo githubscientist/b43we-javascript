@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Callbacks</title>
+</head>
+
+<body>
+    <div id="timer">
+
+    </div>
+
+    <script>
+        // select the timer id div
+        let timer = document.getElementById('timer');
+
+        // define a function to countdown
+        function countdown(seconds, callback){
+            let count = seconds;
+
+            function tick(){
+
+                if(count == 0){
+                    callback();
+                } else{
+                    timer.textContent = count;
+                    setTimeout(tick, 1000);
+                    count--;
+                }
+            }
+
+            tick();
+        }
+
+        function printMessage(){
+            timer.textContent = 'Happy New Year!';
+        }
+
+        // call the countdown function
+        countdown(10, printMessage);
+    </script>
+</body>
+
+</html>

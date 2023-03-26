@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>XMLHTTPRequest Task</title>
+    </head>
+
+    <body>
+
+        <div id="countrynames">
+            <h1>Countries Details</h1>
+        </div>
+
+        <script>
+            // create a xhr object
+            let xhr = new XMLHttpRequest();
+
+            xhr.open('GET', 'https://restcountries.com/v3.1/all', true);
+
+            xhr.onload = function(){
+                let response = this.responseText;
+                let responseObject = JSON.parse(response);
+
+                // console.log(responseObject[0].flag);
+                // for(let country of responseObject){
+                //     console.log(country.flag);
+                // }
+                // let flags = responseObject.map((country) => country.flag);
+                // console.log(flags.join(' '));
+
+                // select the div
+                let countryNamesDiv = document.getElementById('countrynames');
+
+                // console.log(responseObject[6].name.common);
+                // countryNamesDiv.innerText = responseObject[6].name.common;
+
+                // let paragraph = document.createElement('p');
+                // paragraph.innerText = responseObject[4].name.common;
+
+                let countryNames = responseObject.map((country) => country.name.common);
+                // // console.log(countryNames);
+                // let list = document.createElement('ol');
+
+                // countryNames.forEach((country) => {
+                //     let listItem = document.createElement('li');
+                //     listItem.textContent = country;
+                //     list.appendChild(listItem);
+                // });
+                
+                // countryNamesDiv.appendChild(list);
+
+                // console.log(responseObject[0])
+                let countryRegions = responseObject.map((country) => country.region);
+                let countrySubRegions = responseObject.map((country) => country.subregion);
+                let countryPopulations = responseObject.map((country) => country.population);
+                // console.log(countryPopulations);
+                let headers = ['S.No','Country Name', 'Region', 'Sub-Region', 'Population'];
+                
+                let table = document.createElement('table');
+                
+                let headerRow = document.createElement('tr');
+
+                headers.forEach((header) => {
+                    let tableHead = document.createElement('th');
+                    tableHead.textContent = header;
+                    headerRow.appendChild(tableHead);
+                });
+
+                table.appendChild(headerRow);
+
+                for(let index=0; index<responseObject.length; index++){
+                    // prepare a table row
+                    let tableRow = document.createElement('tr');
+
+                    let tableData = document.createElement('td');
+                    tableData.textContent = index+1;
+                    tableRow.appendChild(tableData);
+
+                    // prepare the table data
+                    tableData = document.createElement('td');
+                    tableData.textContent = countryNames[index];
+
+                    // append all the table data to the table row
+                    tableRow.appendChild(tableData);
+
+                    tableData = document.createElement('td');
+                    tableData.textContent = countryRegions[index];
+                    tableRow.appendChild(tableData);
+
+                    tableData = document.createElement('td');
+                    tableData.textContent = countrySubRegions[index];
+                    tableRow.appendChild(tableData);
+
+                    tableData = document.createElement('td');
+                    tableData.textContent = countryPopulations[index];
+                    tableRow.appendChild(tableData);
+
+                    // append it to the table
+                    table.appendChild(tableRow);
+
+                }
+
+                countryNamesDiv.appendChild(table);
+
+            };  
+
+
+            xhr.send();
+        </script>
+    </body>
+</html>

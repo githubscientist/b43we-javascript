@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Callbacks</title>
+    </head>
+
+    <body>
+        <!-- create a button with id myButton and text 'Click Me' -->
+        <button id="myButton">Click Me</button>
+        
+        <script>
+            let anotherFunction = () => {
+                console.log('another function called');
+            }
+
+            // select the button
+            let myButton = document.getElementById('myButton');
+
+            // define a callback function to handle the button click
+            function handleClick(event, callback){
+                console.log('button clicked');
+                callback();
+            }
+
+            // add an event listener to the button and pass the callback function as an argument
+            myButton.addEventListener('click', function(event){
+                handleClick(event, anotherFunction);
+            });
+        </script>
+    </body>
+</html>
