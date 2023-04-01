@@ -3,7 +3,7 @@ function firstTask(callback) {
     setTimeout(() => {
         console.log('first task is completed');
         callback();
-    }, 1000);
+    }, 2000);
 }
 
 function secondTask(callback) {
@@ -11,7 +11,7 @@ function secondTask(callback) {
     setTimeout(() => {
         console.log('second task is completed');
         callback();
-    }, 1000);
+    }, 2000);
 }
 
 function thirdTask(callback) {
@@ -19,7 +19,7 @@ function thirdTask(callback) {
     setTimeout(() => {
         console.log('third task is completed');
         callback();
-    }, 1000);
+    }, 2000);
 }
 
 // callback hell

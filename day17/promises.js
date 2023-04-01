@@ -2,7 +2,7 @@
 
 let promise = new Promise((resolve, reject) => {
     // perform some asynchronous operation
-    let result = 7;
+    let result = 11;
 
     if (result > 10) {
         resolve(result); // the promise gets resolved

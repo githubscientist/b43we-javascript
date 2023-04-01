@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Promise Chaining</title>
+    </head>
+
+    <body>
+        <button onclick="fetchData()">Fetch Data</button>
+
+        <script>
+            function fetchData(){
+
+                // getUserDetails function will get the
+                // parsed javascript object of the user details 
+                // of the user with id 1
+                getUserDetails()
+                .then(user => getUserPosts(user.id))
+                .then(posts => getUserComments(posts[0].id))
+                .then(comments => console.log(comments));
+            }
+
+            // function getUserDetails
+            // this function returns a promise - fetch call
+            // to the api https://jsonplaceholder.typicode.com/users/1
+            // result => user details of the user with id 1
+            function getUserDetails(){
+                return fetch('https://jsonplaceholder.typicode.com/users/1')
+                .then(response => response.json())
+                .catch(error => console.error(error));
+            }
+
+            // the function takes userId as an argument
+            // and makes a fetch call to
+            // https://jsonplaceholder.typicode.com/posts?userId=1
+            function getUserPosts(userId){
+                return fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`)
+                .then(response => response.json())
+                .catch(error => console.error(error));
+            }
+
+            // the function takes postId as a an argument
+            // fetch all the comments posted for a particular post with id
+            // make a fetch call to https://jsonplaceholder.typicode.com/comments?postId=1
+            function getUserComments(postId){
+                return fetch('https://jsonplaceholder.typicode.com/comments?postId=1')
+                .then(response => response.json())
+                .catch(error => console.error(error));
+            }
+
+
+        </script>
+    </body>
+</html>
