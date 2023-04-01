@@ -45,7 +45,7 @@
             // fetch all the comments posted for a particular post with id
             // make a fetch call to https://jsonplaceholder.typicode.com/comments?postId=1
             function getUserComments(postId){
-                return fetch('https://jsonplaceholder.typicode.com/comments?postId=1')
+                return fetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`)
                 .then(response => response.json())
                 .catch(error => console.error(error));
             }
