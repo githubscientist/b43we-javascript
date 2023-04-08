@@ -1,0 +1,6 @@
+1. Add the example for every meaning listed under the part of speech Category
+
+2. createa a button with audio icon when clicked should 
+bring up the audio player to play the pronunciation of the word
+
+3. add the license information and source information in the end of hte page.

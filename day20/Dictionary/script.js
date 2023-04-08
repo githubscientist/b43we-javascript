@@ -27,13 +27,13 @@ async function getmeaning(word) {
         for(let partofspeech of meanings)
         {
             let listitem=document.createElement('li');
-            listitem.innerHTML = `partofspeech: <i>${partofspeech.partOfSpeech}</i>`;
+            listitem.innerHTML = `PartOfSpeech: <b>${partofspeech.partOfSpeech}</b>`;
             let definitions = partofspeech.definitions;
-            let subList = document.createElement('ul');
-            subList.style.listStyleType = 'none';
+            let subList = document.createElement('ol');
+            // subList.style.listStyleType = 'none';
             for (let definition of definitions) {
                 let subListItem = document.createElement('li');
-                subListItem.innerHTML = `"<strong>${definition.definition}</strong>"`;
+                subListItem.innerHTML = `<em>${definition.definition}</em>`;
                 subList.appendChild(subListItem);
             }
             listitem.appendChild(subList);
