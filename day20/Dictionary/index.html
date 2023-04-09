@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Weather App</title>
+        <title>Dictionary App</title>
         <link rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
             integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
@@ -20,18 +20,27 @@
     <body>
         <div class="container mt-4">
             <h1>Dictionary</h1>
+            <label for="wordinput" class="small text-muted">Enter a word below to find the meaning of the word</label>
             <div class="row">
-                <div class="col-md-6">
-                    <form id="dictform">
+                <div class="col-sm-8">
+                    <form id="dictform" class="form-inline">
                         <div class="form-group">
-                            <label for="wordinput">Enter a word below to find the meaning</label>
-                            <input type="text" class="form-control" placeholder="Type a word..." id="wordinput" >
+                            <input type="text" class="form-control" placeholder="Type a word here..." id="wordinput" >
                         </div>
-                        <button type="submit" class="btn btn-secondary">Search</button>
                     </form>
                 </div>
-                <div id="meaningforword" class="col-12 mt-4">
-                
+                <div class="col-sm-4">
+                    <button type="submit" class="btn btn-secondary">Search</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8" id="searchHistory">
+
+                </div>
+            </div>
+            <div class="row">
+                <div id="meaningforword"
+                    class="col-12 mt-4">
                 </div>
             </div>
         </div>

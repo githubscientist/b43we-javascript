@@ -3,4 +3,4 @@
 2. createa a button with audio icon when clicked should 
 bring up the audio player to play the pronunciation of the word
 
-3. add the license information and source information in the end of hte page.
+3. add the license information and source information in the end of the page.
