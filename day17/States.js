@@ -5,7 +5,7 @@ let promise = new Promise((resolve, reject) => {
     if (randomNumber > 5) {
         resolve('success');
     } else {
-        resolve('error');
+        reject('error');
     }
 });
 
