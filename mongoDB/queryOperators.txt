@@ -1,0 +1,16 @@
+Relational
+
+$eq: to get all the values that are equal
+$ne: to get all the values that are not equal
+$gt: to get all the values that are greater than a value
+$gte: to get all the values that are greater than or equal to a value
+$lt: to get all the values that are lesser than a value
+$lte: to get all the values that are lesser than or equal to a value
+$in: to get all the values that are matched in an array
+
+Logical
+
+$and: to get all the records where both the queries match
+$or: to get all the records where either one of the queries match
+$nor: to get all the records where both the queries fail to match
+$not: to get all the records where the query does not match

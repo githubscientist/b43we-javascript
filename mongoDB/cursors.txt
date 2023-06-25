@@ -1,0 +1,868 @@
+Cursor Methods
+
+map, toArray, pretty, forEach, limit, count, sort
+
+db.users.find({$or: [{age: { $eq: 26}}, {"address.country": 'Mexico'}]})
+{
+  _id: ObjectId("6497ad222e6404a6c80a827c"),
+  name: 'Sophia Anderson',
+  age: 26,
+  email: 'sophia.anderson@example.com',
+  address: {
+    city: 'Melbourne',
+    state: 'VIC',
+    country: 'Australia'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827d"),
+  name: 'William Martinez',
+  age: 33,
+  email: 'william.martinez@example.org',
+  address: {
+    city: 'Mexico City',
+    country: 'Mexico'
+  }
+}
+db.users.find().map(user => user.name);
+'Alice Johnson'
+'Michael Brown'
+'Daniel Johnson'
+'Sophia Anderson'
+'William Martinez'
+'John Doe'
+'Jane Smith'
+'David Wilson'
+db.users.find().map(user => user.email);
+'alice.johnson@example.com'
+'emily.davis@example.com'
+'daniel.johnson@example.com'
+'sophia.anderson@example.com'
+'william.martinez@example.org'
+'john.doe@example.com'
+'jane.smith@example.com'
+'olivia.taylor@example.com'
+db.users.find().toArray()
+[
+  {
+    _id: ObjectId("6497ad222e6404a6c80a8278"),
+    name: 'Alice Johnson',
+    age: 42,
+    email: 'alice.johnson@example.com',
+    address: { city: 'London', country: 'UK' }
+  },
+  {
+    _id: ObjectId("6497ad222e6404a6c80a8279"),
+    name: 'Michael Brown',
+    age: 29,
+    email: 'emily.davis@example.com',
+    address: { city: 'Sydney', state: 'NSW', country: 'Australia' }
+  },
+  {
+    _id: ObjectId("6497ad222e6404a6c80a827b"),
+    name: 'Daniel Johnson',
+    age: 38,
+    email: 'daniel.johnson@example.com',
+    address: { city: 'Berlin', country: 'Germany' }
+  },
+  {
+    _id: ObjectId("6497ad222e6404a6c80a827c"),
+    name: 'Sophia Anderson',
+    age: 26,
+    email: 'sophia.anderson@example.com',
+    address: { city: 'Melbourne', state: 'VIC', country: 'Australia' }
+  },
+  {
+    _id: ObjectId("6497ad222e6404a6c80a827d"),
+    name: 'William Martinez',
+    age: 33,
+    email: 'william.martinez@example.org',
+    address: { city: 'Mexico City', country: 'Mexico' }
+  },
+  {
+    _id: ObjectId("6497ad222e6404a6c80a8276"),
+    name: 'John Doe',
+    age: 28,
+    email: 'john.doe@example.com',
+    address: { city: 'New York', state: 'NY', country: 'USA' }
+  },
+  {
+    _id: ObjectId("6497ad222e6404a6c80a8277"),
+    name: 'Jane Smith',
+    age: 35,
+    email: 'jane.smith@example.com',
+    address: { city: 'Los Angeles', state: 'CA', country: 'USA' }
+  },
+  {
+    _id: ObjectId("6497ad222e6404a6c80a827a"),
+    name: 'David Wilson',
+    age: 31,
+    email: 'olivia.taylor@example.com',
+    address: { city: 'Paris', country: 'France' }
+  }
+]
+db.users.find().pretty();
+{
+  _id: ObjectId("6497ad222e6404a6c80a8278"),
+  name: 'Alice Johnson',
+  age: 42,
+  email: 'alice.johnson@example.com',
+  address: {
+    city: 'London',
+    country: 'UK'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a8279"),
+  name: 'Michael Brown',
+  age: 29,
+  email: 'emily.davis@example.com',
+  address: {
+    city: 'Sydney',
+    state: 'NSW',
+    country: 'Australia'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827b"),
+  name: 'Daniel Johnson',
+  age: 38,
+  email: 'daniel.johnson@example.com',
+  address: {
+    city: 'Berlin',
+    country: 'Germany'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827c"),
+  name: 'Sophia Anderson',
+  age: 26,
+  email: 'sophia.anderson@example.com',
+  address: {
+    city: 'Melbourne',
+    state: 'VIC',
+    country: 'Australia'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827d"),
+  name: 'William Martinez',
+  age: 33,
+  email: 'william.martinez@example.org',
+  address: {
+    city: 'Mexico City',
+    country: 'Mexico'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a8276"),
+  name: 'John Doe',
+  age: 28,
+  email: 'john.doe@example.com',
+  address: {
+    city: 'New York',
+    state: 'NY',
+    country: 'USA'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a8277"),
+  name: 'Jane Smith',
+  age: 35,
+  email: 'jane.smith@example.com',
+  address: {
+    city: 'Los Angeles',
+    state: 'CA',
+    country: 'USA'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827a"),
+  name: 'David Wilson',
+  age: 31,
+  email: 'olivia.taylor@example.com',
+  address: {
+    city: 'Paris',
+    country: 'France'
+  }
+}
+db.users.find().forEach(user => print(user.name))
+Alice Johnson
+Michael Brown
+Daniel Johnson
+Sophia Anderson
+William Martinez
+John Doe
+Jane Smith
+David Wilson
+db.users.find().limit(3)
+{
+  _id: ObjectId("6497ad222e6404a6c80a8278"),
+  name: 'Alice Johnson',
+  age: 42,
+  email: 'alice.johnson@example.com',
+  address: {
+    city: 'London',
+    country: 'UK'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a8279"),
+  name: 'Michael Brown',
+  age: 29,
+  email: 'emily.davis@example.com',
+  address: {
+    city: 'Sydney',
+    state: 'NSW',
+    country: 'Australia'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827b"),
+  name: 'Daniel Johnson',
+  age: 38,
+  email: 'daniel.johnson@example.com',
+  address: {
+    city: 'Berlin',
+    country: 'Germany'
+  }
+}
+db.users.find().count()
+8
+db.users.find().sort({age: 1})
+{
+  _id: ObjectId("6497ad222e6404a6c80a827c"),
+  name: 'Sophia Anderson',
+  age: 26,
+  email: 'sophia.anderson@example.com',
+  address: {
+    city: 'Melbourne',
+    state: 'VIC',
+    country: 'Australia'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a8276"),
+  name: 'John Doe',
+  age: 28,
+  email: 'john.doe@example.com',
+  address: {
+    city: 'New York',
+    state: 'NY',
+    country: 'USA'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a8279"),
+  name: 'Michael Brown',
+  age: 29,
+  email: 'emily.davis@example.com',
+  address: {
+    city: 'Sydney',
+    state: 'NSW',
+    country: 'Australia'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827a"),
+  name: 'David Wilson',
+  age: 31,
+  email: 'olivia.taylor@example.com',
+  address: {
+    city: 'Paris',
+    country: 'France'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827d"),
+  name: 'William Martinez',
+  age: 33,
+  email: 'william.martinez@example.org',
+  address: {
+    city: 'Mexico City',
+    country: 'Mexico'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a8277"),
+  name: 'Jane Smith',
+  age: 35,
+  email: 'jane.smith@example.com',
+  address: {
+    city: 'Los Angeles',
+    state: 'CA',
+    country: 'USA'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827b"),
+  name: 'Daniel Johnson',
+  age: 38,
+  email: 'daniel.johnson@example.com',
+  address: {
+    city: 'Berlin',
+    country: 'Germany'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a8278"),
+  name: 'Alice Johnson',
+  age: 42,
+  email: 'alice.johnson@example.com',
+  address: {
+    city: 'London',
+    country: 'UK'
+  }
+}
+db.users.find().sort({age: -1})
+{
+  _id: ObjectId("6497ad222e6404a6c80a8278"),
+  name: 'Alice Johnson',
+  age: 42,
+  email: 'alice.johnson@example.com',
+  address: {
+    city: 'London',
+    country: 'UK'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827b"),
+  name: 'Daniel Johnson',
+  age: 38,
+  email: 'daniel.johnson@example.com',
+  address: {
+    city: 'Berlin',
+    country: 'Germany'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a8277"),
+  name: 'Jane Smith',
+  age: 35,
+  email: 'jane.smith@example.com',
+  address: {
+    city: 'Los Angeles',
+    state: 'CA',
+    country: 'USA'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827d"),
+  name: 'William Martinez',
+  age: 33,
+  email: 'william.martinez@example.org',
+  address: {
+    city: 'Mexico City',
+    country: 'Mexico'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827a"),
+  name: 'David Wilson',
+  age: 31,
+  email: 'olivia.taylor@example.com',
+  address: {
+    city: 'Paris',
+    country: 'France'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a8279"),
+  name: 'Michael Brown',
+  age: 29,
+  email: 'emily.davis@example.com',
+  address: {
+    city: 'Sydney',
+    state: 'NSW',
+    country: 'Australia'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a8276"),
+  name: 'John Doe',
+  age: 28,
+  email: 'john.doe@example.com',
+  address: {
+    city: 'New York',
+    state: 'NY',
+    country: 'USA'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827c"),
+  name: 'Sophia Anderson',
+  age: 26,
+  email: 'sophia.anderson@example.com',
+  address: {
+    city: 'Melbourne',
+    state: 'VIC',
+    country: 'Australia'
+  }
+}
+db.users.find().sort({name: 1})
+{
+  _id: ObjectId("6497ad222e6404a6c80a8278"),
+  name: 'Alice Johnson',
+  age: 42,
+  email: 'alice.johnson@example.com',
+  address: {
+    city: 'London',
+    country: 'UK'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827b"),
+  name: 'Daniel Johnson',
+  age: 38,
+  email: 'daniel.johnson@example.com',
+  address: {
+    city: 'Berlin',
+    country: 'Germany'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827a"),
+  name: 'David Wilson',
+  age: 31,
+  email: 'olivia.taylor@example.com',
+  address: {
+    city: 'Paris',
+    country: 'France'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a8277"),
+  name: 'Jane Smith',
+  age: 35,
+  email: 'jane.smith@example.com',
+  address: {
+    city: 'Los Angeles',
+    state: 'CA',
+    country: 'USA'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a8276"),
+  name: 'John Doe',
+  age: 28,
+  email: 'john.doe@example.com',
+  address: {
+    city: 'New York',
+    state: 'NY',
+    country: 'USA'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a8279"),
+  name: 'Michael Brown',
+  age: 29,
+  email: 'emily.davis@example.com',
+  address: {
+    city: 'Sydney',
+    state: 'NSW',
+    country: 'Australia'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827c"),
+  name: 'Sophia Anderson',
+  age: 26,
+  email: 'sophia.anderson@example.com',
+  address: {
+    city: 'Melbourne',
+    state: 'VIC',
+    country: 'Australia'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827d"),
+  name: 'William Martinez',
+  age: 33,
+  email: 'william.martinez@example.org',
+  address: {
+    city: 'Mexico City',
+    country: 'Mexico'
+  }
+}
+db.users.find().sort({name: 1, age: 1})
+{
+  _id: ObjectId("6497ad222e6404a6c80a8278"),
+  name: 'Alice Johnson',
+  age: 42,
+  email: 'alice.johnson@example.com',
+  address: {
+    city: 'London',
+    country: 'UK'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827b"),
+  name: 'Daniel Johnson',
+  age: 38,
+  email: 'daniel.johnson@example.com',
+  address: {
+    city: 'Berlin',
+    country: 'Germany'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827a"),
+  name: 'David Wilson',
+  age: 31,
+  email: 'olivia.taylor@example.com',
+  address: {
+    city: 'Paris',
+    country: 'France'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a8277"),
+  name: 'Jane Smith',
+  age: 35,
+  email: 'jane.smith@example.com',
+  address: {
+    city: 'Los Angeles',
+    state: 'CA',
+    country: 'USA'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a8276"),
+  name: 'John Doe',
+  age: 28,
+  email: 'john.doe@example.com',
+  address: {
+    city: 'New York',
+    state: 'NY',
+    country: 'USA'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a8279"),
+  name: 'Michael Brown',
+  age: 29,
+  email: 'emily.davis@example.com',
+  address: {
+    city: 'Sydney',
+    state: 'NSW',
+    country: 'Australia'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827c"),
+  name: 'Sophia Anderson',
+  age: 26,
+  email: 'sophia.anderson@example.com',
+  address: {
+    city: 'Melbourne',
+    state: 'VIC',
+    country: 'Australia'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827d"),
+  name: 'William Martinez',
+  age: 33,
+  email: 'william.martinez@example.org',
+  address: {
+    city: 'Mexico City',
+    country: 'Mexico'
+  }
+}
+db.users.find()
+{
+  _id: ObjectId("6497ad222e6404a6c80a8278"),
+  name: 'Alice Johnson',
+  age: 42,
+  email: 'alice.johnson@example.com',
+  address: {
+    city: 'London',
+    country: 'UK'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a8279"),
+  name: 'Michael Brown',
+  age: 29,
+  email: 'emily.davis@example.com',
+  address: {
+    city: 'Sydney',
+    state: 'NSW',
+    country: 'Australia'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827b"),
+  name: 'Daniel Johnson',
+  age: 38,
+  email: 'daniel.johnson@example.com',
+  address: {
+    city: 'Berlin',
+    country: 'Germany'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827c"),
+  name: 'Sophia Anderson',
+  age: 26,
+  email: 'sophia.anderson@example.com',
+  address: {
+    city: 'Melbourne',
+    state: 'VIC',
+    country: 'Australia'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827d"),
+  name: 'William Martinez',
+  age: 33,
+  email: 'william.martinez@example.org',
+  address: {
+    city: 'Mexico City',
+    country: 'Mexico'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a8276"),
+  name: 'John Doe',
+  age: 28,
+  email: 'john.doe@example.com',
+  address: {
+    city: 'New York',
+    state: 'NY',
+    country: 'USA'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a8277"),
+  name: 'Jane Smith',
+  age: 35,
+  email: 'jane.smith@example.com',
+  address: {
+    city: 'Los Angeles',
+    state: 'CA',
+    country: 'USA'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827a"),
+  name: 'David Wilson',
+  age: 31,
+  email: 'olivia.taylor@example.com',
+  address: {
+    city: 'Paris',
+    country: 'France'
+  }
+}
+db.users.find({age: {$gt: 30}})
+{
+  _id: ObjectId("6497ad222e6404a6c80a8278"),
+  name: 'Alice Johnson',
+  age: 42,
+  email: 'alice.johnson@example.com',
+  address: {
+    city: 'London',
+    country: 'UK'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827b"),
+  name: 'Daniel Johnson',
+  age: 38,
+  email: 'daniel.johnson@example.com',
+  address: {
+    city: 'Berlin',
+    country: 'Germany'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827d"),
+  name: 'William Martinez',
+  age: 33,
+  email: 'william.martinez@example.org',
+  address: {
+    city: 'Mexico City',
+    country: 'Mexico'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a8277"),
+  name: 'Jane Smith',
+  age: 35,
+  email: 'jane.smith@example.com',
+  address: {
+    city: 'Los Angeles',
+    state: 'CA',
+    country: 'USA'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827a"),
+  name: 'David Wilson',
+  age: 31,
+  email: 'olivia.taylor@example.com',
+  address: {
+    city: 'Paris',
+    country: 'France'
+  }
+}
+db.users.find({age: {$gt: 30}}).count()
+5
+db.users.find({age: {$gt: 35}}).count()
+2
+db.users.find({age: {$gt: 35}})
+{
+  _id: ObjectId("6497ad222e6404a6c80a8278"),
+  name: 'Alice Johnson',
+  age: 42,
+  email: 'alice.johnson@example.com',
+  address: {
+    city: 'London',
+    country: 'UK'
+  }
+}
+{
+  _id: ObjectId("6497ad222e6404a6c80a827b"),
+  name: 'Daniel Johnson',
+  age: 38,
+  email: 'daniel.johnson@example.com',
+  address: {
+    city: 'Berlin',
+    country: 'Germany'
+  }
+}
+db.stores.aggregate([ {$match: {storeLocation: "Denver"}}, {$group: {_id: '$purchaseMethod', totalPrice: {$sum: "$items.price"}}} ])
+{
+  _id: 'Online',
+  totalPrice: 0
+}
+{
+  _id: 'Phone',
+  totalPrice: 0
+}
+{
+  _id: 'In store',
+  totalPrice: 0
+}
+db.stores.find({storeLocation: "Denver"}).count()
+1549
+db.stores.find({storeLocation: "Denver"}, {"items.price": 1}).limit(5)
+{
+  _id: ObjectId("5bd761dcae323e45a93ccfe8"),
+  items: [
+    {
+      price: Decimal128("40.01")
+    },
+    {
+      price: Decimal128("35.29")
+    },
+    {
+      price: Decimal128("56.12")
+    },
+    {
+      price: Decimal128("77.71")
+    },
+    {
+      price: Decimal128("18.47")
+    },
+    {
+      price: Decimal128("19.95")
+    },
+    {
+      price: Decimal128("8.08")
+    },
+    {
+      price: Decimal128("14.16")
+    }
+  ]
+}
+{
+  _id: ObjectId("5bd761dcae323e45a93ccfea"),
+  items: [
+    {
+      price: Decimal128("30.08")
+    },
+    {
+      price: Decimal128("24.68")
+    },
+    {
+      price: Decimal128("32.1")
+    },
+    {
+      price: Decimal128("31.41")
+    },
+    {
+      price: Decimal128("43.56")
+    },
+    {
+      price: Decimal128("68.95")
+    },
+    {
+      price: Decimal128("8.57")
+    },
+    {
+      price: Decimal128("106.6")
+    },
+    {
+      price: Decimal128("596.33")
+    }
+  ]
+}
+{
+  _id: ObjectId("5bd761dcae323e45a93ccff1"),
+  items: [
+    {
+      price: Decimal128("26.64")
+    },
+    {
+      price: Decimal128("1217.84")
+    },
+    {
+      price: Decimal128("19.45")
+    },
+    {
+      price: Decimal128("22.33")
+    },
+    {
+      price: Decimal128("16.7")
+    },
+    {
+      price: Decimal128("22.77")
+    },
+    {
+      price: Decimal128("21.36")
+    },
+    {
+      price: Decimal128("69.88")
+    }
+  ]
+}
+{
+  _id: ObjectId("5bd761dcae323e45a93ccff7"),
+  items: [
+    {
+      price: Decimal128("806.84")
+    },
+    {
+      price: Decimal128("10.63")
+    },
+    {
+      price: Decimal128("38.37")
+    }
+  ]
+}
+
+
+db.stores.aggregate([ {$match: {storeLocation: "Denver"}}, {$unwind: '$items'},  {$group: {_id: '$purchaseMethod', totalPrice: {$sum: "$items.price"}}} ])
+{
+  _id: 'Online',
+  totalPrice: Decimal128("325042.25")
+}
+{
+  _id: 'In store',
+  totalPrice: Decimal128("511747.31")
+}
+{
+  _id: 'Phone',
+  totalPrice: Decimal128("93152.52")
+}
